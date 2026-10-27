@@ -1,0 +1,83 @@
+/* PeerForge theme: dark navy page, slate cards, blue accent. No animations. */
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --blue: #3b82f6;
+  --green: #16a34a;
+  --red: #dc2626;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, 'Segoe UI', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+p { margin: 6px 0; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+
+/* Brand text */
+.brand { color: var(--blue); font-weight: 700; font-size: 20px; }
+.brand.big { font-size: 30px; }
+
+/* Centers a card on the page */
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Rounded card with a soft border */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.auth-card { width: 100%; max-width: 400px; }
+
+/* Forms */
+.form { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+input {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  font: inherit;
+  font-size: 14px;
+}
+input:focus { outline: 2px solid var(--blue); }
+
+/* Buttons */
+.row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
+.btn {
+  background: var(--border);
+  color: var(--text);
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn.primary { background: var(--blue); color: #fff; }
+
+/* Messages */
+.notice { border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: 14px; }
+.notice.ok { background: #14532d; border: 1px solid var(--green); }
+.notice.err { background: #7f1d1d; border: 1px solid var(--red); }
+
+.demo { margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
