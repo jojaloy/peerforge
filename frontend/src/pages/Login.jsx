@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { getUsers } from '../api/users.js'
+import Logo from '../components/Logo'
 
-export default function Login({ onLogin, goRegister }) {
+export default function Login({ onLogin, goRegister, theme }) {
   const [studentId, setStudentId] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -24,7 +25,7 @@ export default function Login({ onLogin, goRegister }) {
   return (
     <div className="page-center">
       <div className="card auth-card">
-        <div className="brand big"><img src="/Logo.png" alt="PeerForge Logo" className="logo" /></div>
+        <div className="brand big"><Logo theme={theme} /></div>
         <p className="muted">Find project partners by skills, availability and mutual consent.</p>
         {error && <div className="notice err">{error}</div>}
         <form className="form" onSubmit={handleSubmit}>

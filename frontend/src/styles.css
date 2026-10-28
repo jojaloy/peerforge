@@ -1,4 +1,7 @@
-/* PeerForge theme: dark navy page, slate cards, blue accent. No animations. */
+/* PeerForge theme: dark (default) + light mode. No animations.
+   The theme is switched by data-theme="light" on <html> (see theme.js). */
+
+/* Dark theme (default) */
 :root {
   --bg: #0f172a;
   --card: #1e293b;
@@ -8,13 +11,67 @@
   --blue: #3b82f6;
   --green: #16a34a;
   --red: #dc2626;
+
+  /* notice boxes */
+  --ok-bg: #14532d;
+  --err-bg: #7f1d1d;
+  --notice-text: #f1f5f9;
+
+  /* page background image */
+  --bg-image: url('/background-dark.jpg');
+
+  /* 3D card effect */
+  --card-highlight: rgba(255, 255, 255, 0.10);
+  --card-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 -4px 0 rgba(0, 0, 0, 0.35) inset,
+    0 2px 4px rgba(0, 0, 0, 0.30),
+    0 8px 16px rgba(0, 0, 0, 0.35),
+    0 24px 48px rgba(0, 0, 0, 0.45);
+
+  color-scheme: dark;
+}
+
+/* Light theme */
+:root[data-theme="light"] {
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --border: #cbd5e1;
+  --text: #0f172a;
+  --muted: #475569;
+  --blue: #2563eb;
+  --green: #16a34a;
+  --red: #dc2626;
+
+  --ok-bg: #dcfce7;
+  --err-bg: #fee2e2;
+  --notice-text: #0f172a;
+
+  /* page background image */
+  --bg-image: url('/background-light.jpg');
+
+  /* 3D card effect */
+  --card-highlight: rgba(255, 255, 255, 0.9);
+  --card-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 -4px 0 rgba(15, 23, 42, 0.08) inset,
+    0 2px 4px rgba(15, 23, 42, 0.10),
+    0 8px 16px rgba(15, 23, 42, 0.12),
+    0 24px 48px rgba(15, 23, 42, 0.18);
+
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background-color: var(--bg);          /* fallback while the image loads */
+  background-image: var(--bg-image);
+  background-size: cover;               /* fill the whole screen */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;         /* stays still when the page scrolls */
   color: var(--text);
   font-family: Inter, 'Segoe UI', Arial, sans-serif;
   font-size: 16px;
@@ -28,11 +85,11 @@ p { margin: 6px 0; }
 /* Brand text */
 .brand { color: var(--blue); font-weight: 700; font-size: 20px; }
 .brand.big {
-   font-size: 30px; 
-   display: flex;
-  justify-content: center; /* Centers horizontally */
-  align-items: center;     /* Centers vertically */
-  }
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* Centers a card on the page */
 .page-center {
@@ -50,7 +107,23 @@ p { margin: 6px 0; }
   border-radius: 12px;
   padding: 20px;
 }
-.auth-card { width: 100%; max-width: 400px; }
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  border-top-color: var(--card-highlight);   /* lit top edge */
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);            /* stacked shadows = depth */
+}
+
+.page-center { perspective: 1000px; }
+
+.auth-card {
+  transition: transform 0.2s;
+}
+.auth-card:hover {
+  transform: rotateX(2deg) rotateY(-2deg);
+}
 
 /* Forms */
 .form { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
@@ -80,10 +153,28 @@ input:focus { outline: 2px solid var(--blue); }
 }
 .btn.primary { background: var(--blue); color: #fff; }
 
+/* Theme toggle (fixed top right) */
+.theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  padding: 8px 12px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
 /* Messages */
-.notice { border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: 14px; }
-.notice.ok { background: #14532d; border: 1px solid var(--green); }
-.notice.err { background: #7f1d1d; border: 1px solid var(--red); }
+.notice {
+  color: var(--notice-text);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 10px 0;
+  font-size: 14px;
+}
+.notice.ok  { background: var(--ok-bg);  border: 1px solid var(--green); }
+.notice.err { background: var(--err-bg); border: 1px solid var(--red); }
 
 .demo { margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
 
