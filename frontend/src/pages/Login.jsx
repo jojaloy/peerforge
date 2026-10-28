@@ -24,7 +24,7 @@ export default function Login({ onLogin, goRegister }) {
   return (
     <div className="page-center">
       <div className="card auth-card">
-        <div className="brand big">PeerForge</div>
+        <div className="brand big"><img src="/Logo.png" alt="PeerForge Logo" className="logo" /></div>
         <p className="muted">Find project partners by skills, availability and mutual consent.</p>
         {error && <div className="notice err">{error}</div>}
         <form className="form" onSubmit={handleSubmit}>

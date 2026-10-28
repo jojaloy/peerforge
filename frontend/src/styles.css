@@ -27,7 +27,12 @@ p { margin: 6px 0; }
 
 /* Brand text */
 .brand { color: var(--blue); font-weight: 700; font-size: 20px; }
-.brand.big { font-size: 30px; }
+.brand.big {
+   font-size: 30px; 
+   display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  }
 
 /* Centers a card on the page */
 .page-center {
@@ -81,3 +86,9 @@ input:focus { outline: 2px solid var(--blue); }
 .notice.err { background: #7f1d1d; border: 1px solid var(--red); }
 
 .demo { margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+
+/* Logo */
+.logo {
+  width: 150px;
+  height: auto;
+}
